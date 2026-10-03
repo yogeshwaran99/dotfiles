@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'nanotech/jellybeans.vim'
+Plug 'puremourning/vimspector'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim'
@@ -101,18 +102,17 @@ nnoremap <leader>r :Rg<CR>
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-
+let g:vimspector_enable_mappings = 'HUMAN'
 
 autocmd FileType css,html setlocal nosmartindent
 
 
 " Change cwd to the directory of the file you open in NERDTree
 autocmd BufEnter * if &filetype ==# 'nerdtree' | setlocal bufhidden=wipe | endif
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 " HTML template for new files
 augroup html_template
   autocmd!
   autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
 augroup END
-
