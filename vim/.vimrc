@@ -60,13 +60,67 @@ augroup END
 
 
 " Java
-nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> K :call CocActionAsync('doHover')<CR>
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>oi :call CocAction('runCommand', 'java.edit.organizeImports')<CR>
+"nmap <silent> gd <Plug>(coc-definition)
+"nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+"nmap <silent> gr <Plug>(coc-references)
+"nmap <leader>oi :call CocAction('runCommand', 'java.edit.organizeImports')<CR>
+
+
+
+" ========================
+" " CoC / LSP
+" " ========================
+
+" Go to definition
+ nmap <silent> gd <Plug>(coc-definition)
+
+" Go to declaration
+ nmap <silent> gy <Plug>(coc-type-definition)
+
+" Go to implementation
+ nmap <silent> gi <Plug>(coc-implementation)
+
+" Find references
+ nmap <silent> gr <Plug>(coc-references)
+
+" Documentation / hover
+ nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+" Rename symbol
+ nmap <leader>rn <Plug>(coc-rename)
+
+" Code action
+ nmap <leader>ca <Plug>(coc-codeaction-cursor)
+
+" Next diagnostic/error
+ nmap <silent> ]d <Plug>(coc-diagnostic-next)
+
+" Previous diagnostic/error
+ nmap <silent> [d <Plug>(coc-diagnostic-prev)
+
+" Show diagnostic
+ nnoremap <leader>d :call CocActionAsync('diagnosticInfo')<CR>
+
+" Organize Java imports
+ nnoremap <leader>oi :call CocAction('runCommand', 'java.edit.organizeImports')<CR>
+
+" Symbols in current file
+ nnoremap <leader>o :CocList outline<CR>
+
+" Workspace symbols
+ nnoremap <leader>s :CocList -I symbols<CR>
+
+" All diagnostics
+ nnoremap <leader>e :CocList diagnostics<CR>
 
 " Maven project
 command! -nargs=1 Javan :!mvn archetype:generate -DgroupId=com.example -DartifactId=<args> -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+command! MvnTest :!mvn test
+command! MvnPackage :!mvn clean package
+command! MvnRun :!mvn spring-boot:run
+command! MvnClean :!mvn clean
+
 
 " NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -91,14 +145,16 @@ inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
 " Use <Tab> and <S-Tab> to navigate popup menu
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
-
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 "set mouse=a
 
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>r :Rg<CR>
-
+nnoremap <leader>l :Lines<CR>
+nnoremap <leader>h :History<CR>
+nnoremap <leader>c :Commits<CR>
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -116,3 +172,13 @@ augroup html_template
   autocmd!
   autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
 augroup END
+
+
+"Navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
+nnoremap <C-`> :bot terminal<CR>
